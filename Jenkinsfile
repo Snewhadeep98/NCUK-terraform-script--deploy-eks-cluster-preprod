@@ -48,11 +48,15 @@ pipeline {
 
                     dir('kubernetes') {
 
-                        sh "aws eks update-kubeconfig --name NCUK-eks-preprod"
-
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: '155c8573-fb81-4916-847c-ca7403bf1a0b', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                        
                         sh "kubectl apply -f deployment.yaml"
 
                         sh "kubectl apply -f service.yaml"
+}
+
+                    
+                    
 
                     }
 
