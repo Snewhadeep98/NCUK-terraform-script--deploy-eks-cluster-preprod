@@ -1,12 +1,24 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: aggregator-service
+  labels:
+    app: aggregator-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:397324481535:certificate/7051f611-eb57-4331-bd0e-bbd516a9b3d1
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
 spec:
   selector:
-    app: aggregator
+    app: aggregator-service
+  type: LoadBalancer
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: LoadBalancer # or NodePort, ClusterIP based on requirements
+  - name: https
+    port: 443
+    protocol: TCP
+    nodePort: 30546
+    targetPort: 8080
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
