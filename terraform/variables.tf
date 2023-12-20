@@ -1,10 +1,10 @@
-variable "NCUK-vpc-cidr-block-preprod" {
+variable "vpc_cidr_block" {
 	type = string
 }
 
-variable "private_NCUK-subnet-cidr-block-preprods" {
+variable "private_subnet_cidr_blocks" {
 	type = list(string)
 }
-variable "public_NCUK-subnet-cidr-block-preprods" {
+variable "public_subnet_cidr_blocks" {
 	type = list(string)
 }

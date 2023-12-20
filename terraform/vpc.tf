@@ -2,9 +2,9 @@ data "aws_availability_zones" "azs" {}
 module "NCUK-vpc-preprod" {
   source          = "terraform-aws-modules/vpc/aws"
   name            = "NCUK-vpc-preprod"
-  cidr            = var.NCUK-vpc-cidr-block-preprod
-  private_subnets = var.private_NCUK-subnet-cidr-block-preprods
-  public_subnets  = var.public_NCUK-subnet-cidr-block-preprods
+  cidr            = var.vpc_cidr_block
+  private_subnets = var.private_subnet_cidr_blocks
+  public_subnets  = var.public_subnet_cidr_blocks
   azs             = data.aws_availability_zones.azs.names
 
   enable_nat_gateway   = true
