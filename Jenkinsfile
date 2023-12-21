@@ -10,7 +10,7 @@ pipeline {
 
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
 
-        AWS_DEFAULT_REGION = "eu-west-3a"
+        AWS_DEFAULT_REGION = "eu-west-3"
 
     }
 
