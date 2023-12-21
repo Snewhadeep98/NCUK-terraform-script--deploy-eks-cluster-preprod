@@ -1,19 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: aggregator
+  name: nginx
+  labels:
+    app: nginx
 spec:
-  replicas: 3
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
-    matchLabels:
-      app: aggregator
-  template:
-    metadata:
-      labels:
-        app: aggregator
-    spec:
-      containers:
-      - name: aggregator-container
-        image: 871154751090.dkr.ecr.eu-west-2.amazonaws.com/aggregator-service:latest
-        ports:
-        - containerPort: 8080
+    app: nginx
+  type: LoadBalancer
